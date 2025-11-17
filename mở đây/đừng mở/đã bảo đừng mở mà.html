@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gửi em,Người anh thương ❤️</title>
+    <style>
+        /* Cài đặt font chữ đẹp từ Google Fonts */
+        @import url('https://fonts.googleapis.com/css2?family=Pacifico&family=Roboto:wght@400;700&display=swap');
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('OIP(5).webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden; /* Ẩn thanh cuộn */
+            position: relative;
+        }
+
+        /* Tạo hiệu ứng trái tim bay lơ lửng */
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(-45deg);
+            animation: fly 10s linear infinite;
+        }
+
+        .heart::before,
+        .heart::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+
+        .heart::before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart::after {
+            top: 0;
+            left: 10px;
+        }
+
+        /* Thêm hiệu ứng bóng bay */
+        .balloon {
+            position: absolute;
+            width: 50px;
+            height: 60px;
+            background-color: rgba(255, 192, 203, 0.8); /* Màu hồng nhạt */
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: float 15s linear infinite;
+            bottom: -100px; /* Bắt đầu từ dưới màn hình */
+        }
+
+        .balloon::before {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 1px;
+            height: 20px;
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .balloon::after {
+            content: "";
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 5px;
+            background: rgba(255, 105, 180, 0.8); /* Màu hồng đậm hơn */
+            border-radius: 50%;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-120vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateY(100vh) rotate(-45deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) rotate(-45deg);
+                opacity: 0;
+            }
+        }
+
+        .container {
+            text-align: center;
+            background-color:(255,188,188);
+            padding: 40px 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            z-index: 1;
+            max-width: 90%;
+        }
+
+        h1 {
+            font-family: 'Pacifico', cursive;
+            color: #e91e63;
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #333;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        button {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        #yesBtn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        #yesBtn:hover {
+            transform: scale(1.1);
+            background-color: #45a049;
+        }
+
+        #noBtn {
+            background-color: #f44336;
+            color: white;
+            position: absolute; /* Quan trọng để di chuyển nút */
+        }
+    </style>
+</head>
+<body>
+   <audio src="uhmmmmm.mp3" autoplay loop hidden></audio>
+
+    <div class="container" id="mainContainer">
+        <h1>Anh không đủ can đảm để làm bạn với người mình thường.
+            Anh cũng không đủ dũng cảm để nhìn em yêu người khác.
+        </h1>
+        <p>Anh mong em sẽ cho anh một cơ hội để có thể yêu em một lần và mãi mãi ❤️</p>
+        <div class="buttons">
+            <button id="yesBtn">Tất nhiên là đồng ý!</button>
+            <button id="noBtn">Không, mơ đi!</button>
+        </div>
+    </div>
+
+    <script>
+        const mainContainer = document.getElementById('mainContainer');
+        const yesBtn = document.getElementById('yesBtn');
+        const noBtn = document.getElementById('noBtn');
+
+        noBtn.addEventListener('mouseover', () => {
+            const newX = Math.random() * (window.innerWidth - noBtn.clientWidth);
+            const newY = Math.random() * (window.innerHeight - noBtn.clientHeight);
+            noBtn.style.left = `${newX}px`;
+            noBtn.style.top = `${newY}px`;
+        });
+
+        yesBtn.addEventListener('click', () => {
+            mainContainer.innerHTML = '<h1>! Em cũng biết anh yêu em mà đúng không😘</h1>';
+            // Tạo thêm nhiều trái tim khi đồng ý
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                heart.style.left = `${Math.random() * 100}vw`;
+                heart.style.animationDuration = `${Math.random() * 2 + 3}s`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                document.body.appendChild(heart);
+            }
+        });
+
+        // Tạo bóng bay bay lên
+        function createBalloon() {
+            const balloon = document.createElement('div');
+            balloon.classList.add('balloon');
+
+            const colors = [
+                'rgba(255, 192, 203, 0.8)', // Pink
+                'rgba(173, 216, 230, 0.8)', // Light Blue
+                'rgba(255, 255, 0, 0.8)',   // Yellow
+                'rgba(144, 238, 144, 0.8)', // Light Green
+                'rgba(221, 160, 221, 0.8)'  // Plum
+            ];
+
+            balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            balloon.style.left = `${Math.random() * 100}vw`;
+            balloon.style.animationDuration = `${Math.random() * 10 + 10}s`; // Thời gian bay từ 10-20s
+            balloon.style.animationDelay = `${Math.random() * 5}s`;
+
+            document.body.appendChild(balloon);
+
+            // Xóa bóng bay sau khi bay xong để không làm chậm trang
+            setTimeout(() => {
+                balloon.remove();
+            }, 25000);
+        }
+
+        // Tạo bóng bay liên tục
+        setInterval(createBalloon, 1000); // Tạo một bóng bay mỗi giây
+    </script>
+
+</body>
+</html>
